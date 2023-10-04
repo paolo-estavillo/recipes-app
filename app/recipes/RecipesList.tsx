@@ -15,10 +15,11 @@ function RecipesList(props: RecipesListProps) {
     let [pageNumber, setPageNumber] = useState(1);
     const { children } = props;
     let arrayChildren = Children.toArray(children);
+    let totalPageNumber = Math.ceil(arrayChildren.length / PAGE_LIMIT);
 
     const idx = pageNumber - 1;
     const startRecipeIdx = idx * PAGE_LIMIT;
-    const endRecipeIdx = startRecipeIdx + PAGE_LIMIT;
+    // const endRecipeIdx = startRecipeIdx + PAGE_LIMIT;
 
     const increment = () => {
         const newPageNumber = pageNumber + 1;
@@ -35,17 +36,26 @@ function RecipesList(props: RecipesListProps) {
         setPageNumber(newPageNumber);
     }
 
-    let displayedRecipes = arrayChildren.slice(startRecipeIdx, endRecipeIdx+1);
+    let displayedRecipes = arrayChildren.slice(startRecipeIdx, startRecipeIdx + PAGE_LIMIT);
+
+    let leftActive = startRecipeIdx > 0;
+    let rightActive = startRecipeIdx < displayedRecipes.length;
 
     return (
-        <div className="flex flex-col">
-            <div className='buttons flex justify-around mb-12 items-center'>
-                <button className="text-4xl" onClick={decrement}>{'<'}</button>
-                <strong className="text-3xl">{pageNumber}</strong>
-                <button className="text-4xl" onClick={increment}>{'>'}</button>
+        <div className="flex flex-col w-full">
+            <div className='buttons flex justify-center gap-8 mb-12 items-center'>
+                <div
+                    className="text-4xl cursor-pointer transition-all hover:scale-150 hover:text-green-600" onClick={decrement}
+                    style={{visibility: leftActive ? 'visible' : 'hidden'}}
+                >{'<-'}</div>
+                <strong className="text-3xl tracking-widest">{pageNumber}/{totalPageNumber}</strong>
+                <div
+                    className="text-4xl cursor-pointer transition-all hover:scale-150 hover:text-green-600" onClick={increment}
+                    style={{visibility: rightActive ? 'visible' : 'hidden'}}
+                >{'->'}</div>
             </div>
 
-            <div className='flex justify-center flex-wrap gap-6 mx-1'>
+            <div className='flex flex-col justify-normal items-center gap-8 md:flex-row md:justify-center md:flex-wrap md:gap-6 md:mx-1 md:w-full'>
                 {displayedRecipes}
             </div>
         </div>

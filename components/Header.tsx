@@ -3,8 +3,8 @@ import Link from "next/link";
 
 function Header() {
     return (
-        <div className="w-full fixed top-0 left-0">    
-            <div className="flex justify-center h-16 bg-sky-300 mx-auto drop-shadow-xl">
+        <div className="w-full fixed top-0 left-0 z-50">    
+            <div className="flex justify-center h-16 bg-green-600 mx-auto drop-shadow-xl">
                 {/* Links */}
 
                 {/* Logo */}

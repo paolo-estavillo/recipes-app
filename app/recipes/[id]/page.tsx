@@ -23,7 +23,7 @@ async function Page(props: PageProps) {
     // const recipeData = await fetch(`/api/recipes/${id}`);
 
     return (
-        <div className="mx-8">
+        <div className="px-8 mx-auto max-w-screen-md">
             <h1 className=" text-5xl font-extrabold">{recipeData.name}</h1>
             <div className=" w-full">
                 <Image 
@@ -38,7 +38,7 @@ async function Page(props: PageProps) {
             <h2 className="text-4xl font-bold mt-8 mb-4">Ingredients</h2>
             <ul className="list-disc pl-8">
                 {recipeData.ingredients.map((ingredient, index) => (
-                    <li className=" text-2xl" key={index}>{ingredient}</li>
+                    <li className=" text-2xl mt-2" key={index}>{ingredient}</li>
                 ))}
             </ul>
 
@@ -46,8 +46,8 @@ async function Page(props: PageProps) {
             <ul>
                 {recipeData.directions.map((direction, index) => (
                     <li key={index}>
-                        <h3 className="text-3xl font-bold mt-4">{`Step ${index + 1}`}</h3>
-                        <p className="text-2xl">{direction}</p>
+                        <h3 className="text-3xl font-bold mt-12">{`Step ${index + 1}`}</h3>
+                        <p className="text-2xl mt-4">{direction}</p>
                     </li>
                 ))}
             </ul>
