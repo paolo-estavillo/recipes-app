@@ -42,8 +42,8 @@ function RecipesList(props: RecipesListProps) {
     let rightActive = startRecipeIdx < displayedRecipes.length;
 
     return (
-        <div className="flex flex-col w-full">
-            <div className='buttons flex justify-center gap-8 mb-12 items-center'>
+        <div className="flex flex-col-reverse w-full md:flex-col">
+            <div className='buttons flex justify-center gap-8 mt-8 items-center md:mb-12'>
                 <div
                     className="text-4xl cursor-pointer transition-all hover:scale-150 hover:text-green-600" onClick={decrement}
                     style={{visibility: leftActive ? 'visible' : 'hidden'}}
